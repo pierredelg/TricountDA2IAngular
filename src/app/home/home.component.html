@@ -1,0 +1,13 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">Bienvenue sur Tricount DA2I</h4>
+    <div class="card-body">
+        <h6>Voici la liste des utilisateurs : </h6>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="users">
+            <li *ngFor="let user of users">
+              {{user.id}} : {{user.name}} {{user.email}}- <a (click)="deleteUser(user.id)" class="text-danger"></a>
+              Supprimer
+            </li>
+        </ul>
+    </div>
+</div>

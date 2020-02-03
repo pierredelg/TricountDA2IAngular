@@ -1,0 +1,32 @@
+﻿<app-image-logo></app-image-logo>
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="card">
+      <div id="login-header">
+        <h4 class="card-header">Tricount DA2I</h4>
+      </div>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Identifiant</label>
+                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">L'identifiant est obligatoire</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" formControlName="password" class="form-control" autocomplete="on" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Le mot de passe est obligatoire</div>
+                    </div>
+                </div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Se connecter
+                </button>
+<!--                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>-->
+                <a routerLink="/register" class="btn btn-link">Créer un compte</a>
+            </form>
+        </div>
+    </div>
+</div>
