@@ -1,2 +1,6 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 /* You can add global styles to this file, and also import other style files */
 a { cursor: pointer }
+.tricount-color {
+  background-color: #3993d6 !important;
+}

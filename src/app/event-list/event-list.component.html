@@ -1,0 +1,30 @@
+<div class="d-flex align-items-center mb-2 mt-2">
+  <div class="flex-grow-1">
+    <h3>Liste des événements : </h3>
+  </div>
+  <button mat-fab class="button-plus tricount-color text-white display-4">+</button>
+</div>
+<mat-nav-list>
+  <mat-divider></mat-divider>
+  <div *ngIf="events.length > 0;">
+    <div mat-list-item *ngFor="let event of events" >
+      <div class="d-flex align-items-center mb-2 mt-2">
+        <div class="flex-grow-1">
+          <a (click)="getEvent(event.idEvenement)">
+            <h3 matLine> {{ event.titre.toUpperCase() }} </h3>
+            <p matLine>
+              <span class="demo-2"> {{event.description}} </span>
+            </p>
+          </a>
+        </div>
+      <div>
+        <a mat-raised-button color="warn" (click)="deleteEvent(event.idEvenement)" class="text-white mb-2">Supprimer</a>
+      </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+  <div *ngIf="events.length == 0;">
+      Vous ne particpez à aucun événements
+  </div>
+</mat-nav-list>

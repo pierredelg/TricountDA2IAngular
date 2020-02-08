@@ -1,6 +1,9 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-  <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/">Home</a>
-    <a class="nav-item nav-link" (click)="logout()">Logout</a>
-  </div>
+<nav class="d-flex tricount-color text-white" *ngIf="currentUser">
+    <div class="bar-logo bg-white">
+      <img src="../../assets/image/logo.png" alt="">
+    </div>
+    <div class="bar-component text-white d-flex align-items-center justify-content-end flex-row">
+      <a class="nav-item nav-link" routerLink="/">Accueil</a>
+      <a class="nav-item nav-link" (click)="logout()">Déconnexion</a>
+    </div>
 </nav>

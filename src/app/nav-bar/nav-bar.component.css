@@ -1,0 +1,32 @@
+img{
+  width: 100%;
+}
+
+.bar-logo{
+  flex:1;
+}
+.bar-component{
+  flex:10;
+}
+.bar-component a {
+  color: white !important;
+}
+
+@media screen and (max-width: 900px) and (min-width: 600px){
+  .bar-component{
+    color: white;
+    flex: 8;
+  }
+}
+@media screen and (max-width: 600px) and (min-width: 300px){
+  .bar-component{
+    color: white;
+    flex: 4;
+  }
+}
+@media screen and (max-width: 300px) and (min-width: 0px){
+  .bar-component{
+    color: white;
+    flex: 2;
+  }
+}

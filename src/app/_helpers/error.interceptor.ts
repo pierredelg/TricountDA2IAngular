@@ -17,14 +17,20 @@ export class ErrorInterceptor implements HttpInterceptor {
           console.log("body = " + request.body.toString());
         }
         return next.handle(request).pipe(catchError(err => {
+
           //On réceptionne les reponses du serveur
           //Si la réponse est 401 on déconnecte l'utilisateur
             if (err.status === 401) {
                 this.authenticationService.logout();
                 location.reload();
             }
+            if (err.status === 400) {
 
-            const error = err.error.message || err.statusText;
+                console.log("erreur dans le body = " + err.error);
+
+            }
+
+            const error = err.error || err.error.message || err.statusText;
             return throwError(error);
         }))
     }
