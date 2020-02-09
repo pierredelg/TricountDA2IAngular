@@ -37,4 +37,8 @@ export class EventListComponent implements OnInit {
   getEvent(id: any) {
 
   }
+
+  addEvent() {
+
+  }
 }
