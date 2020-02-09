@@ -18,10 +18,14 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['users/login']);
   }
 
   ngOnInit() {
   }
 
+  home() {
+    let idUser = localStorage.getItem('userId');
+    this.router.navigate(['users/'+ idUser +'/home']);
+  }
 }
