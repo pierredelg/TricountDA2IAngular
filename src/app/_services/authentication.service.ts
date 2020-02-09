@@ -23,17 +23,18 @@ export class AuthenticationService {
 
   login(username, password) {
     return this.http.post<any>(`${environment.apiUrl}/api/authenticate`, { username, password })
-      .pipe(map(user => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-        return user;
+      .pipe(map(userToken => {
+        // On ajoute le token de l'utilisateur
+        localStorage.setItem('currentUser', JSON.stringify(userToken));
+        this.currentUserSubject.next(userToken);
+        return userToken;
       }));
   }
 
   logout() {
-    // remove user from local storage and set current user to null
+    // On retire le token de l'utilisateur
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('userId');
     this.currentUserSubject.next(null);
   }
 }

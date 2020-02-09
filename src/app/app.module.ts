@@ -17,7 +17,11 @@ import {EventListComponent} from "./event-list/event-list.component";
 import {MatListModule} from '@angular/material/list';
 import { SingleEventComponent } from './single-event/single-event.component';
 import {MatButtonModule} from "@angular/material/button";
-
+import { EventFormComponent } from './event-form/event-form.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import { EntriesListComponent } from './entries-list/entries-list.component';
+import { BalanceComponent } from './balance/balance.component';
 
 @NgModule({
   imports: [
@@ -26,7 +30,9 @@ import {MatButtonModule} from "@angular/material/button";
     HttpClientModule,
     MatListModule,
     appRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   declarations: [
     AppComponent,
@@ -39,7 +45,10 @@ import {MatButtonModule} from "@angular/material/button";
     AlertComponent,
     EventListComponent,
     SingleEventComponent
-  ],
+,
+    EventFormComponent ,
+    EntriesListComponent ,
+    BalanceComponent],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
