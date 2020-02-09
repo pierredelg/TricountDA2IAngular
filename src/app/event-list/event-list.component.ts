@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {first} from "rxjs/operators";
 import {EventService} from "../_services/event.service";
-import {Event} from "../_models/event";
 
 class A {
 }
@@ -17,17 +16,18 @@ export class EventListComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    this.loadAllEvent();
+    this.loadAllEventForUser();
   }
 
   private deleteEvent(id: any) {
     this.eventService.delete(id)
       .pipe(first())
-      .subscribe(() => this.loadAllEvent());
+      .subscribe(() => this.loadAllEventForUser());
   }
 
-  private loadAllEvent() {
-    this.eventService.getAll()
+  private loadAllEventForUser() {
+    let id : number = Number(localStorage.getItem('userId'));
+    this.eventService.getAllForUser(id)
       .pipe(first())
       .subscribe(events => {
         this.events = events;

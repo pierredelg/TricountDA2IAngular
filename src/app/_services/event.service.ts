@@ -7,8 +7,8 @@ export class EventService {
   constructor(private http: HttpClient) {
   }
 
-  getAll() {
-    return this.http.get<Event[]>(`${environment.apiUrl}/api/events`);
+  getAllForUser(id:number) {
+    return this.http.get<Event[]>(`${environment.apiUrl}/api/users/${id}/events`);
   }
   getOne(){
     return this.http.get<Event>(`${environment.apiUrl}/api/events/`+ 1);
