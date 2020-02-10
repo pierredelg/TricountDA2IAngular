@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: 'users/:id/events/:id/balance', component: BalanceComponent},
 
     // otherwise redirect to home
-    { path: '**', redirectTo: 'home' }
+    { path: '**', redirectTo: 'users/:id/home' }
 ];
 
 export const appRoutingModule = RouterModule.forRoot(routes);

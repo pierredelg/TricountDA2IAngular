@@ -2,7 +2,7 @@
   <div class="flex-grow-1">
     <h3>Liste des événements : </h3>
   </div>
-  <button mat-fab class="button-plus tricount-color text-white display-4" (click)="addEvent()">+</button>
+  <button mat-fab class="button-plus tricount-color text-white display-4" routerLink="/users/{{userId}}/events/new">+</button>
 </div>
 <mat-nav-list>
   <mat-divider></mat-divider>
@@ -10,8 +10,8 @@
     <div mat-list-item *ngFor="let event of events" >
       <div class="d-flex align-items-center mb-2 mt-2">
         <div class="flex-grow-1">
-          <a (click)="getEvent(event.idEvenement)">
-            <h3 matLine> {{ event.titre.toUpperCase() }} </h3>
+          <a (click)="getOneEvent(event.idEvenement)">
+            <h3 matLine> {{ event.titre | titlecase }} </h3>
             <p matLine>
               <span class="demo-2"> {{event.description}} </span>
             </p>

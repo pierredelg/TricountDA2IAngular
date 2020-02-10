@@ -22,9 +22,10 @@ export class RegisterFormComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService
   ) {
-    // redirect to home if already logged in
+    // On redirige vers l'accueil si l'utilisateur est authentifié
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
+      let userId = localStorage.getItem('userId');
+      this.router.navigate(['/users/'+ userId +'/home']);
     }
   }
 
@@ -37,16 +38,13 @@ export class RegisterFormComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
     this.submitted = true;
 
-    // reset alerts on submit
     this.alertService.clear();
 
-    // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
@@ -56,7 +54,7 @@ export class RegisterFormComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('Registration successful', true);
+          this.alertService.success('Enregistrement effectué', true);
           this.router.navigate(['users/login']);
         },
         error => {

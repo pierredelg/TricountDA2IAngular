@@ -1,21 +1,55 @@
-<mat-form-field appearance="fill">
-  <mat-label>Titre</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Description</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Devise</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let currency of currencies" [value]="currency.value">
-      {{currency.code}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Participant</mat-label>
-  <input matInput>
-</mat-form-field>
-<a mat-raised-button color="primary" (click)="addParticipant()" class="text-white mb-2">Ajouter</a>
+<h3 class="text-center mt-4 mb-4">Enregistrement d'un nouvel événement</h3>
+<div class="d-flex flex-column">
+  <form class="d-flex flex-column" [formGroup]="addEventForm" (ngSubmit)="addEvent()" novalidate>
+    <mat-form-field>
+      <mat-label>Titre</mat-label>
+      <input matInput formControlName="titre" required>
+      <mat-error *ngIf="errorHandling('titre', 'required')">
+        Le <strong>titre</strong> est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" required>
+      <mat-error *ngIf="errorHandling('description', 'required')">
+        La <strong>description</strong> est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+<!--    <mat-form-field>-->
+<!--      <mat-label>Devise</mat-label>-->
+<!--      <mat-select formControlName="devise" required>-->
+<!--        <mat-option [value]="currency.code" *ngFor="let currency of currencies">{{currency.code}}</mat-option>-->
+<!--      </mat-select>-->
+<!--      <mat-error *ngIf="errorHandling('devise', 'required')">-->
+<!--        La <strong>devise</strong> est obligatoire-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
+  </form>
+
+  <div class="d-flex flex-row align-items-center">
+    <mat-form-field appearance="fill">
+      <mat-label>Participant</mat-label>
+      <input matInput [(ngModel)]="participantInput" name="participantInput" ngModel>
+    </mat-form-field>
+    <div class="button-add-participant">
+      <button mat-raised-button color="primary" (click)="addParticipant(participantInput)" class="text-white mb-2">Ajouter ce participant</button>
+    </div>
+  </div>
+
+  <div *ngIf="participants.length > 0;">
+    <mat-list>
+      <h3 mat-subheader>Participants</h3>
+      <mat-list-item *ngFor="let participantSelected of participants" (click)="removeParticipant(participantSelected)">
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <h4 mat-line>{{participantSelected}}</h4>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <div class="add-event-validation d-flex flex-row justify-content-center">
+    <button mat-raised-button color="primary" [disabled]="!addEventForm.valid" (click)="addEvent()" class="text-white mr-1 mb-2">Ajouter cet événement</button>
+    <button mat-raised-button color="warn" routerLink="/users/{{userId}}/home" class="text-white ml-1 mb-2">Annuler</button>
+  </div>
+</div>
