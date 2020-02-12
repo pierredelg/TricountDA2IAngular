@@ -28,7 +28,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 import {MatTabsModule} from "@angular/material/tabs";;
 import { EntryFormComponent } from './entry-form/entry-form.component'
-
+;
+import { SingleEntryComponent } from './single-entry/single-entry.component'
 @NgModule({
     imports: [
         BrowserModule,
@@ -60,6 +61,7 @@ import { EntryFormComponent } from './entry-form/entry-form.component'
     EntriesListComponent,
     BalanceComponent,
     EntryFormComponent,
+    SingleEntryComponent
   ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

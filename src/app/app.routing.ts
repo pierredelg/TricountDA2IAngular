@@ -8,6 +8,7 @@ import {EventFormComponent} from "./event-form/event-form.component";
 import {EntriesListComponent} from "./entries-list/entries-list.component";
 import {BalanceComponent} from "./balance/balance.component";
 import {EntryFormComponent} from "./entry-form/entry-form.component";
+import {SingleEntryComponent} from "./single-entry/single-entry.component";
 
 
 
@@ -20,8 +21,9 @@ const routes: Routes = [
     { path: 'users/:id/events/:id', component: SingleEventComponent },
     { path: 'users/:id/events/:id/entries', component: EntriesListComponent},
     { path: 'users/:id/events/:id/balance', component: BalanceComponent},
+    { path: 'users/:idEvent/events/:id/entries/:idEntry', component: SingleEntryComponent},
 
-    // otherwise redirect to home
+  // otherwise redirect to home
     { path: '**', redirectTo: 'users/:id/home' }
 ];
 

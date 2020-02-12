@@ -1,5 +1,6 @@
 import {Participant} from "./participant";
 import {Currency} from "./currency";
+import {Event} from "./event";
 
 export class Entry {
   idEcriture:number;

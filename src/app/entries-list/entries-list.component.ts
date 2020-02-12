@@ -53,14 +53,10 @@ export class EntriesListComponent implements OnInit {
     this.entryService.getOneEntry(id).subscribe(
       data => {
         let evenement = data.evenement;
-        console.log('evenement : ' + evenement);
-        // let idEvenement = evenement.idEvenement;
+        let idEvenement = evenement.idEvenement;
         let idEcriture = data.idEcriture;
-        console.log('idecriture : ' + idEcriture);
-
         let userId = localStorage.getItem('userId');
-        // this.router.navigate(['/users/' + userId + '/events/'+ idEvenement + '/entries/'+ idEcriture]);
-        this.router.navigate(['/users/' + userId + '/home']);
+        this.router.navigate(['/users/' + userId + '/events/'+ idEvenement + '/entries/'+ idEcriture]);
 
       },
       error => {
