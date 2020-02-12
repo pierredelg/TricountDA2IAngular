@@ -8,7 +8,7 @@ export class EventService {
   constructor(private http: HttpClient) {
   }
 
-  getAllForUser(id:number) {
+  getAllEventByUser(id:number) {
     return this.http.get<Event[]>(`${environment.apiUrl}/api/users/${id}/events`);
   }
   getOneEvent(id: any){

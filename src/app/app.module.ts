@@ -26,7 +26,8 @@ import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
-import {MatTabsModule} from "@angular/material/tabs";
+import {MatTabsModule} from "@angular/material/tabs";;
+import { EntryFormComponent } from './entry-form/entry-form.component'
 
 @NgModule({
     imports: [
@@ -57,7 +58,8 @@ import {MatTabsModule} from "@angular/material/tabs";
     SingleEventComponent,
     EventFormComponent,
     EntriesListComponent,
-    BalanceComponent
+    BalanceComponent,
+    EntryFormComponent,
   ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

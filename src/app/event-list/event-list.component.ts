@@ -45,7 +45,7 @@ export class EventListComponent implements OnInit {
 
   private loadAllEventForUser() {
     let id : number = Number(localStorage.getItem('userId'));
-    this.eventService.getAllForUser(id)
+    this.eventService.getAllEventByUser(id)
       .pipe(first())
       .subscribe(events => {
         this.events = events;

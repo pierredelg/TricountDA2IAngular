@@ -1,1 +1,29 @@
-<p>entries-list works!</p>
+<mat-nav-list>
+  <div *ngIf="entries.length > 0;">
+    <mat-divider></mat-divider>
+    <div mat-list-item *ngFor="let entry of entries" >
+      <div class="d-flex align-items-center mb-2 mt-2">
+        <div class="flex-grow-1">
+          <a (click)="getOneEntry(entry.idEcriture)">
+            <h3 matLine> {{ entry.libelle | titlecase }} </h3>
+            <p matLine>
+              <span class="demo-2"> {{entry.description}} </span>
+            </p>
+          </a>
+        </div>
+        <div>
+          <a mat-raised-button color="warn" (click)="deleteEntry(entry.idEvenement)" class="text-white mb-2">Supprimer</a>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+  <div class="pt-4 pb-4"></div>
+  <div *ngIf="entries.length == 0;" class="text-center mt-4 mb-4">
+    Vous n'avez pas encore de dépenses. Cliquez sur le bouton "+" pour en ajouter.
+  </div>
+  <div class="pt-4 pb-4"></div>
+  <div class="d-flex justify-content-center">
+    <button mat-fab class="button-plus tricount-color text-white display-4" routerLink="/users/{{userId}}/entries/new">+</button>
+  </div>
+</mat-nav-list>
