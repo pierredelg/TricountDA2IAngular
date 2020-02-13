@@ -1,6 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {appRoutingModule} from "./app.routing";
 import {AppComponent} from "./app.component";
@@ -27,9 +27,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 import {MatTabsModule} from "@angular/material/tabs";;
-import { EntryFormComponent } from './entry-form/entry-form.component'
-;
-import { SingleEntryComponent } from './single-entry/single-entry.component'
+import { EntryFormComponent } from './entry-form/entry-form.component';
+import { SingleEntryComponent } from "./single-entry/single-entry.component";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -44,7 +44,7 @@ import { SingleEntryComponent } from './single-entry/single-entry.component'
         BrowserAnimationsModule,
         MatIconModule,
         FormsModule,
-        MatTabsModule
+        MatTabsModule,
     ],
   declarations: [
     AppComponent,
@@ -61,7 +61,7 @@ import { SingleEntryComponent } from './single-entry/single-entry.component'
     EntriesListComponent,
     BalanceComponent,
     EntryFormComponent,
-    SingleEntryComponent
+    SingleEntryComponent,
   ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

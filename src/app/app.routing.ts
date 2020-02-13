@@ -11,20 +11,18 @@ import {EntryFormComponent} from "./entry-form/entry-form.component";
 import {SingleEntryComponent} from "./single-entry/single-entry.component";
 
 
-
 const routes: Routes = [
     { path: 'users/login', component: LoginComponent },
     { path: 'users/register', component: RegisterFormComponent },
-    { path: 'users/:id/home', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'users/:id/entries/new', component: EntryFormComponent},
-    { path: 'users/:id/events/new', component: EventFormComponent},
-    { path: 'users/:id/events/:id', component: SingleEventComponent },
-    { path: 'users/:id/events/:id/entries', component: EntriesListComponent},
-    { path: 'users/:id/events/:id/balance', component: BalanceComponent},
-    { path: 'users/:idEvent/events/:id/entries/:idEntry', component: SingleEntryComponent},
+    { path: 'users/home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'users/entries/new', component: EntryFormComponent},
+    { path: 'users/events/new', component: EventFormComponent},
+    { path: 'users/events/:idEvent', component: SingleEventComponent },
+    { path: 'users/events/:idEvent/entries', component: EntriesListComponent},
+    { path: 'users/events/:idEvent/balance', component: BalanceComponent},
+    { path: 'users/events/:idEvent/entries/:idEntry', component: SingleEntryComponent},
 
-  // otherwise redirect to home
-    { path: '**', redirectTo: 'users/:id/home' }
+    { path: '**', redirectTo: 'users/home' }
 ];
 
 export const appRoutingModule = RouterModule.forRoot(routes);
