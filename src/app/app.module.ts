@@ -26,7 +26,7 @@ import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
-import {MatTabsModule} from "@angular/material/tabs";;
+import {MatTabsModule} from "@angular/material/tabs";
 import { EntryFormComponent } from './entry-form/entry-form.component';
 import { SingleEntryComponent } from "./single-entry/single-entry.component";
 

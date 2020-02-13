@@ -13,13 +13,13 @@ export class EntryService {
   getAllEntryByEvent(idEvent:number) {
     return this.http.get<Entry[]>(`${environment.apiUrl}/api/events/${idEvent}/entries`);
   }
-  getOneEntry(id: any){
-    return this.http.get<Entry>(`${environment.apiUrl}/api/entries/${id}`);
+  getOneEntry(idEvent:number, idEntry: number){
+    return this.http.get<Entry>(`${environment.apiUrl}/api/events/${idEvent}/entries/${idEntry}`);
   }
-  delete(id: any) {
-    return this.http.delete(`${environment.apiUrl}/api/entries/${id}`);
+  delete(idEvent:number, idEntry: number) {
+    return this.http.delete(`${environment.apiUrl}/api/events/${idEvent}/entries/${idEntry}`);
   }
-  addOneEntry(event:Entry){
-    return this.http.post(`${environment.apiUrl}/api/entries/`,event);
+  addOneEntry(idEvent:number, event:Entry){
+    return this.http.post(`${environment.apiUrl}/api/events/${idEvent}/entries/`,event);
   }
 }

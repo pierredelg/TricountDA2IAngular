@@ -3,6 +3,7 @@ import {first} from "rxjs/operators";
 import {EventService} from "../_services/event.service";
 import {AlertService} from "../_services/alert.service";
 import {Router} from "@angular/router";
+import {Event} from "../_models/event";
 
 class A {
 }
@@ -13,7 +14,7 @@ class A {
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-  events: Array<any> = [];
+  events: Array<Event> = [];
   userId: string;
 
   constructor(private eventService: EventService,
@@ -23,6 +24,7 @@ export class EventListComponent implements OnInit {
   }
 
   ngOnInit() {
+    sessionStorage.removeItem("idEvent");
     this.loadAllEventForUser();
   }
 
@@ -33,13 +35,11 @@ export class EventListComponent implements OnInit {
         data => {
           this.loadAllEventForUser();
           this.alertService.success('Evenement supprimé', true);
-          let userId = localStorage.getItem('userId');
-          this.router.navigate(['/users/' + userId + '/home']);
+          this.router.navigate(['/users/home']);
         },
         error => {
           this.alertService.error(error);
-          let userId = localStorage.getItem('userId');
-          this.router.navigate(['/users/' + userId + '/home']);
+          this.router.navigate(['/users/home']);
         });
   }
 
@@ -56,13 +56,12 @@ export class EventListComponent implements OnInit {
     this.eventService.getOneEvent(id).subscribe(
       data => {
         let idEvenement = data.idEvenement;
-        let userId = localStorage.getItem('userId');
-        this.router.navigate(['/users/' + userId + '/events/'+ idEvenement]);
+        sessionStorage.setItem("idEvent",String(idEvenement));
+        this.router.navigate(['/users/events/'+ idEvenement]);
       },
       error => {
         this.alertService.error(error);
-        let userId = localStorage.getItem('userId');
-        this.router.navigate(['/users/' + userId + '/home']);
+        this.router.navigate(['/users/home']);
       });
   }
 }

@@ -11,10 +11,10 @@ export class EventService {
   getAllEventByUser(id:number) {
     return this.http.get<Event[]>(`${environment.apiUrl}/api/users/${id}/events`);
   }
-  getOneEvent(id: any){
-    return this.http.get<Event>(`${environment.apiUrl}/api/events/`+ id);
+  getOneEvent(id: number){
+    return this.http.get<Event>(`${environment.apiUrl}/api/events/${id}`);
   }
-  delete(id: any) {
+  delete(id: number) {
     return this.http.delete(`${environment.apiUrl}/api/events/${id}`);
   }
   addOneEvent(event:Event){
