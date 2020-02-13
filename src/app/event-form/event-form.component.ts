@@ -40,15 +40,6 @@ export class EventFormComponent implements OnInit {
 
   get f() { return this.addEventForm.controls; }
 
-
-  private loadAllCurrencies() {
-    this.currencyService.getAll()
-      .pipe(first())
-      .subscribe(currencies => {
-        this.currencies = currencies;
-      });
-  }
-
   addParticipant(participant: string) {
     this.alertService.clear();
     this.participants.push(participant);

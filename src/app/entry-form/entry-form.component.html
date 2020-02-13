@@ -1,1 +1,40 @@
-<p>entry-form works!</p>
+<h3 class="text-center mt-4 mb-4">Enregistrement d'une nouvelle dépense</h3>
+<div class="d-flex flex-column">
+  <form class="d-flex flex-column" [formGroup]="entryForm" (ngSubmit)="addEntry()" novalidate>
+    <mat-form-field>
+      <mat-label>Libelle</mat-label>
+      <input matInput formControlName="libelle" required>
+      <mat-error *ngIf="errorHandling('libelle', 'required')">
+        Le <strong>libelle</strong> est obligatoire
+      </mat-error>
+    </mat-form-field>
+    <div class="d-flex">
+      <mat-form-field>
+        <mat-label>Montant</mat-label>
+        <input type="number" matInput formControlName="montant" required>
+        <mat-error *ngIf="errorHandling('montant', 'required')">
+          Le <strong>libelle</strong> est obligatoire
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Devise</mat-label>
+        <mat-select formControlName="devise" required>
+          <mat-option [value]="currency.code" *ngFor="let currency of currencies">{{currency.code}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="errorHandling('devise', 'required')">
+          La <strong>devise</strong> est obligatoire
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="date">
+      <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+      <mat-datepicker #date></mat-datepicker>
+    </mat-form-field>
+  </form>
+  <div class="add-event-validation d-flex flex-row justify-content-center">
+    <button mat-raised-button color="primary" [disabled]="!entryForm.valid" (click)="addEntry()" class="text-white mr-1 mb-2">Enregistrer</button>
+    <button mat-raised-button color="warn" routerLink="/users/home" class="text-white ml-1 mb-2">Annuler</button>
+  </div>
+</div>

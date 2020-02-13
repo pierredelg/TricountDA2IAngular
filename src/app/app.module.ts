@@ -25,27 +25,35 @@ import { BalanceComponent } from './balance/balance.component';
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
-import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
+import {
+  ErrorStateMatcher,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+  ShowOnDirtyErrorStateMatcher
+} from "@angular/material/core";
 import {MatTabsModule} from "@angular/material/tabs";
 import { EntryFormComponent } from './entry-form/entry-form.component';
 import { SingleEntryComponent } from "./single-entry/single-entry.component";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatListModule,
-        appRoutingModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatInputModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        FormsModule,
-        MatTabsModule,
-    ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatListModule,
+    appRoutingModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    FormsModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -64,9 +72,11 @@ import { SingleEntryComponent } from "./single-entry/single-entry.component";
     SingleEntryComponent,
   ],
     providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-        {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+      MatDatepickerModule,
+      {provide: MAT_DATE_LOCALE, useValue: 'fr'},
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+      {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     ],
     bootstrap: [AppComponent]
 })
