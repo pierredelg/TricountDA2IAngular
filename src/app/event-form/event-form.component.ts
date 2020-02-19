@@ -8,6 +8,8 @@ import {AlertService} from "../_services/alert.service";
 import {Event} from "../_models/event";
 import {Participant} from "../_models/participant";
 import {EventService} from "../_services/event.service";
+import {ParticipantService} from "../_services/participant.service";
+import {error} from "util";
 
 @Component({
   selector: 'app-event-form',
@@ -15,7 +17,6 @@ import {EventService} from "../_services/event.service";
   styleUrls: ['./event-form.component.css']
 })
 export class EventFormComponent implements OnInit {
-  currencies: Array<Currency> = [];
   userId: string;
   participants: Array<string> = [];
   addEventForm: FormGroup;
@@ -25,7 +26,8 @@ export class EventFormComponent implements OnInit {
               private formBuilder: FormBuilder,
               private router: Router,
               private alertService: AlertService,
-              private eventService : EventService
+              private eventService : EventService,
+              private participantService : ParticipantService,
   )
   {
     this.userId = localStorage.getItem('userId');
@@ -41,9 +43,11 @@ export class EventFormComponent implements OnInit {
   get f() { return this.addEventForm.controls; }
 
   addParticipant(participant: string) {
-    this.alertService.clear();
-    this.participants.push(participant);
-    this.participantInput = '';
+    if(participant != undefined && participant.length > 0) {
+      this.alertService.clear();
+      this.participants.push(participant);
+      this.participantInput = '';
+    }
   }
 
   removeParticipant(participant: string) {
@@ -69,21 +73,31 @@ export class EventFormComponent implements OnInit {
     event.description = this.addEventForm.get('description').value;
     event.participants = [];
 
-    for (let nom of this.participants){
-      let participant = new Participant();
-      participant.surnom = nom;
-      event.participants.push(participant);
-    }
-    console.log('eveneemnt avant envoie = ' + event);
-    this.eventService.addOneEvent(event)
-      .subscribe(
-      data => {
-        this.alertService.success('Evenement ajouté', true);
-        let userId = localStorage.getItem('userId');
-        this.router.navigate(['/users/' + userId + '/home']);
-      },
-      error => {
-        this.alertService.error(error);
+    //On recupere le participant qui crée l'événement
+    this.participantService.getParticipantByUserId(Number(this.userId))
+      .subscribe(value => {
+
+        event.participants.push(value);
+
+        for (let nom of this.participants){
+          let participant = new Participant();
+          participant.surnom = nom;
+          event.participants.push(participant);
+        }
+
+        console.log(event.participants);
+
+        this.eventService.addOneEvent(event)
+          .subscribe(
+            data => {
+              this.alertService.success('Evenement ajouté', true);
+              this.router.navigate(['/users/' + this.userId + '/home']);
+            },
+            error => {
+              this.alertService.error(error);
+            });
+      },error1 => {
+        this.alertService.error("Impossible de créer l'événement");
       });
   }
 

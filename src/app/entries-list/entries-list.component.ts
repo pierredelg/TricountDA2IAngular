@@ -25,7 +25,6 @@ export class EntriesListComponent implements OnInit {
 
   ngOnInit() {
     this.idEvent = parseInt(sessionStorage.getItem("idEvent"));
-    console.log("idevent from init = " + this.idEvent);
     this.loadAllEntriesForUser();
   }
 
