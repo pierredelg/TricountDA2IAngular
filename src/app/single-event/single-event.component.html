@@ -1,8 +1,11 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center align-items-center flex-column">
   <h3 *ngIf="evenement != undefined"> {{evenement.titre | titlecase}} </h3>
-    <p matLine *ngFor="let participant of participants">
-      <span class="demo-2" >{{participant.surnom}} </span>
+  <div class="d-flex justify-content-center">
+    <p class="mr-1" matLine *ngFor="let participant of participants">
+      <span *ngIf="participants != null && participants.length > 0 " class="demo-2" > / {{participant.surnom}} </span>
     </p>
+    <span *ngIf="participants != null && participants.length > 0 ">/</span>
+  </div>
 </div>
 <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
   <mat-tab label="Dépenses"><app-entries-list></app-entries-list></mat-tab>

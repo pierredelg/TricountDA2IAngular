@@ -65,7 +65,6 @@ export class EventFormComponent implements OnInit {
     }
 
     if (this.addEventForm.invalid) {
-      console.log("ERREUR FORMULAIRE EVENT");
       return;
     }
     let event = new Event();
@@ -91,7 +90,7 @@ export class EventFormComponent implements OnInit {
           .subscribe(
             data => {
               this.alertService.success('Evenement ajouté', true);
-              this.router.navigate(['/users/' + this.userId + '/home']);
+              this.router.navigate(['/users/home/']);
             },
             error => {
               this.alertService.error(error);

@@ -35,25 +35,27 @@ import {MatTabsModule} from "@angular/material/tabs";
 import { EntryFormComponent } from './entry-form/entry-form.component';
 import { SingleEntryComponent } from "./single-entry/single-entry.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatListModule,
-    appRoutingModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    FormsModule,
-    MatTabsModule,
-    MatDatepickerModule,
-    MatNativeDateModule
-  ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatListModule,
+        appRoutingModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        FormsModule,
+        MatTabsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatCheckboxModule
+    ],
   declarations: [
     AppComponent,
     HomeComponent,

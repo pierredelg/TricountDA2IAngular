@@ -5,9 +5,6 @@ import {AlertService} from "../_services/alert.service";
 import {Router} from "@angular/router";
 import {Event} from "../_models/event";
 
-class A {
-}
-
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
