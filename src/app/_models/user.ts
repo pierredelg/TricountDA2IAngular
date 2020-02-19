@@ -3,5 +3,6 @@
     email: string;
     password: string;
     name: string;
+    nickname:string;
     token?: string;
 }

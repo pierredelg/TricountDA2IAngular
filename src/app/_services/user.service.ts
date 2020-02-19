@@ -19,7 +19,8 @@ export class UserService {
       let userdto = {
         nom:user.name,
         email:user.email,
-        motDePasse:user.password
+        motDePasse:user.password,
+        participant: {surnom: user.nickname}
       };
 
       return this.http.post(`${environment.apiUrl}/api/register`, userdto);
