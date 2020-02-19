@@ -45,7 +45,7 @@ export class EntryFormComponent implements OnInit {
       payePar:   ['', [Validators.required]],
     });
     this.eventId = parseInt(sessionStorage.getItem("idEvent"));
-    this.participantService.getParticipantByEvent(this.eventId).subscribe(
+    this.participantService.getAllParticipantByEvent(this.eventId).subscribe(
       value => {
         this.participants = value;
         for(let particip of this.participants){
