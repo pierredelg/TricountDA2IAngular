@@ -25,7 +25,6 @@ export class EntriesListComponent implements OnInit {
 
   ngOnInit() {
     this.idEvent = parseInt(sessionStorage.getItem("idEvent"));
-    console.log("idevent from init = " + this.idEvent);
     this.loadAllEntriesForUser();
   }
 
@@ -55,9 +54,9 @@ export class EntriesListComponent implements OnInit {
   getOneEntry(idEntry: number) {
     this.entryService.getOneEntry(this.idEvent,idEntry).subscribe(
       data => {
-        let evenement = data.evenement;
-        let idEvenement = evenement.idEvenement;
+        let idEvenement = this.idEvent;
         let idEcriture = data.idEcriture;
+        sessionStorage.setItem('entryId',String(idEcriture));
         this.router.navigate(['/users/events/'+ idEvenement + '/entries/'+ idEcriture]);
 
       },

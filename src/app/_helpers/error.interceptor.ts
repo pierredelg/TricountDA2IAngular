@@ -12,7 +12,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log("Requete recue : ");
         console.log("url = " + request.url);
-        console.log("header = " + request.headers.keys().toString());
         if(request.body) {
           console.log("body = " + request.body.toString());
         }

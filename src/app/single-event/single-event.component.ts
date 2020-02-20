@@ -21,7 +21,7 @@ export class SingleEventComponent implements OnInit {
     this.eventService.getOneEvent(idEvent).subscribe(
       data => {
         this.evenement = data;
-        this.participantService.getParticipantByEvent(this.evenement.idEvenement).subscribe(
+        this.participantService.getAllParticipantByEvent(this.evenement.idEvenement).subscribe(
           value => {
             this.participants = value;
           }

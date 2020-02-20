@@ -8,14 +8,11 @@ export class AlertService {
   private keepAfterRouteChange = false;
 
   constructor(private router: Router) {
-    // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         if (this.keepAfterRouteChange) {
-          // only keep for a single route change
           this.keepAfterRouteChange = false;
         } else {
-          // clear alert message
           this.clear();
         }
       }
@@ -27,20 +24,16 @@ export class AlertService {
   }
 
   success(message: string, keepAfterRouteChange = false) {
-    console.log("service alert success")
     this.keepAfterRouteChange = keepAfterRouteChange;
     this.subject.next({ type: 'success', text: message });
   }
 
   error(message: string, keepAfterRouteChange = false) {
-    console.log("service alert error");
     this.keepAfterRouteChange = keepAfterRouteChange;
     this.subject.next({ type: 'error', text: message });
   }
 
   clear() {
-    console.log("service alert clear")
-    // clear by calling subject.next() without parameters
     this.subject.next();
   }
 }

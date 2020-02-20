@@ -28,10 +28,28 @@
     </div>
     <mat-form-field class="example-full-width">
       <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="date">
-      <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-      <mat-datepicker #date></mat-datepicker>
+      <input matInput formControlName="date" [matDatepicker]="datePicker" required>
+      <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+      <mat-datepicker #datePicker></mat-datepicker>
+      <mat-error *ngIf="errorHandling('date', 'required')">
+        la date est obligatoire
+      </mat-error>
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Payé par</mat-label>
+      <mat-select formControlName="payePar" required>
+        <mat-option *ngFor="let participant of participants" [value]="participant.surnom">
+          {{participant.surnom}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('payePar', 'required')">
+        Il faut indiquer le participant qui paye
+      </mat-error>
+    </mat-form-field>
+    <h5 class="mb-4">Pour qui : </h5>
+    <div *ngFor="let participant of participants">
+      <mat-checkbox formControlName="{{participant.surnom}}" [checked]="true">{{participant.surnom}}</mat-checkbox>
+    </div>
   </form>
   <div class="add-event-validation d-flex flex-row justify-content-center">
     <button mat-raised-button color="primary" [disabled]="!entryForm.valid" (click)="addEntry()" class="text-white mr-1 mb-2">Enregistrer</button>

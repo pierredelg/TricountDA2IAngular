@@ -4,3 +4,6 @@ a { cursor: pointer }
 .tricount-color {
   background-color: #3993d6 !important;
 }
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #007bfe !important;
+}
