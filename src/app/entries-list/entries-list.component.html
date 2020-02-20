@@ -14,7 +14,7 @@
                 <span class="demo-2">payé par <strong>{{entry.participant.surnom}}</strong></span>
               </p>
               <p matLine>
-                <span class="demo-2">{{entry.date}}</span>
+                <span class="demo-2">{{entry.date | date: 'dd/MM/y'}}</span>
               </p>
             </div>
           </a>
