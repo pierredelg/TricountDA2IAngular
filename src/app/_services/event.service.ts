@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Event} from "../_models/event";
+import {Balancedto} from "../_models/balancedto";
 
 @Injectable({ providedIn: 'root' })
 export class EventService {
@@ -19,5 +20,8 @@ export class EventService {
   }
   addOneEvent(event:Event){
     return this.http.post(`${environment.apiUrl}/api/events/`,event);
+  }
+  getBalanceForOneEvent(id: number){
+    return this.http.get<Balancedto>(`${environment.apiUrl}/api/events/${id}/balance`);
   }
 }
