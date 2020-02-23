@@ -1,1 +1,40 @@
-<p>balance works!</p>
+<!--<mat-nav-list>-->
+<!--  <mat-divider></mat-divider>-->
+<!--  <p>{{montantTotal}}</p>-->
+<!--  <div *ngIf="mapMontantDuPot != null && mapMontantDuPot.size > 0;">-->
+<!--    <div mat-list-item *ngFor="let entry of mapMontantDuPot | keyvalue" >-->
+<!--      <div class="d-flex align-items-center mb-2 mt-2">-->
+<!--        <div class="flex-grow-1">-->
+<!--            <h3 matLine> {{ entry.key}} </h3>-->
+<!--            <p matLine>-->
+<!--              <span class="demo-2"> {{entry.value}} </span>-->
+<!--            </p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <mat-divider></mat-divider>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</mat-nav-list>-->
+<div class="mt-4 mb-2">
+  <h3>Comment équilibrer ? </h3>
+</div>
+<mat-nav-list>
+  <mat-divider></mat-divider>
+  <div *ngIf="mapRemboursement != null && mapRemboursement.size > 0;">
+    <div mat-list-item *ngFor="let entry of mapRemboursement | keyvalue" >
+      <div class="d-flex align-items-center mb-2 mt-2">
+        <div class="flex-grow-1">
+          <h4 matLine>{{ entry.key[0] | titlecase}}</h4>
+          <p matLine>
+            <span class="demo-2"> doit à </span>
+          </p>
+          <h4 matLine>{{entry.key[1] | titlecase}}</h4>
+        </div>
+        <div>
+          <h4>{{entry.value}} {{devise.symbole}}</h4>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+</mat-nav-list>

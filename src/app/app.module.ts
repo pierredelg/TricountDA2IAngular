@@ -25,6 +25,7 @@ import { BalanceComponent } from './balance/balance.component';
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
+
 import {
   ErrorStateMatcher,
   MAT_DATE_LOCALE,
@@ -36,6 +37,9 @@ import { EntryFormComponent } from './entry-form/entry-form.component';
 import { SingleEntryComponent } from "./single-entry/single-entry.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { BalanceBarChartComponent } from './balance-bar-chart/balance-bar-chart.component';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+
 
 @NgModule({
     imports: [
@@ -54,7 +58,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         MatTabsModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        NgxChartsModule
     ],
   declarations: [
     AppComponent,
@@ -72,6 +77,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     BalanceComponent,
     EntryFormComponent,
     SingleEntryComponent,
+    BalanceBarChartComponent
   ],
     providers: [
       MatDatepickerModule,

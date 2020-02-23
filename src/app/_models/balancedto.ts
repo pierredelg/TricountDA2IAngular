@@ -1,8 +1,9 @@
-﻿import {Participant} from "./participant";
+﻿import {Currency} from "./currency";
 
 export class Balancedto {
     montantTotalPot : number;
-    mapMontantDepenseParticipant : Map<Participant,number>;
-    mapMontantApayerAuPot : Map<Participant,number>;
-    mapRempboursement : Map<Map<Participant,Participant>,number>;
+    mapMontantDepenseParticipant : Map<string,number>;
+    mapMontantApayerAuPot : Map<string,number>;
+    mapRempboursement : Map<Map<string,string>,number>;
+    devise: Currency;
 }
