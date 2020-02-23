@@ -18,6 +18,9 @@
 <div class="mt-4 mb-2">
   <h3>Comment équilibrer ? </h3>
 </div>
+<div *ngIf="noBalance" class="mt-3 mb-3 text-center">
+    <h4>Le tricount est équilibré</h4>
+</div>
 <mat-nav-list>
   <mat-divider></mat-divider>
   <div *ngIf="mapRemboursement != null && mapRemboursement.size > 0;">

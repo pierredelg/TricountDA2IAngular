@@ -19,8 +19,6 @@ export class EntriesListComponent implements OnInit {
               private alertService: AlertService,
               private router : Router) {
     this.userId = localStorage.getItem('userId');
-    // this.idEvent = parseInt(sessionStorage.getItem("idEvent"));
-    // console.log("id event from constructor = " + this.idEvent);
   }
 
   ngOnInit() {
@@ -48,6 +46,8 @@ export class EntriesListComponent implements OnInit {
       .pipe(first())
       .subscribe(entries => {
         this.entries = entries;
+      },error => {
+
       });
   }
 

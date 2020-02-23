@@ -21,6 +21,7 @@ export class EventFormComponent implements OnInit {
   participants: Array<string> = [];
   addEventForm: FormGroup;
   participantInput: string;
+  currentParticipant: Participant;
 
   constructor(private currencyService : CurrencyService,
               private formBuilder: FormBuilder,
@@ -38,22 +39,35 @@ export class EventFormComponent implements OnInit {
       titre: ['', [Validators.required]],
       description: ['', [Validators.required]],
     });
-  }
+    this.participantService.getParticipantByUserId(Number(this.userId)).subscribe(value => {
+      this.currentParticipant = value;
+      this.participants.push(this.currentParticipant.surnom);
+    });
+
+    }
 
   get f() { return this.addEventForm.controls; }
 
   addParticipant(participant: string) {
     if(participant != undefined && participant.length > 0) {
-      this.alertService.clear();
-      this.participants.push(participant);
-      this.participantInput = '';
+      if(this.participants.indexOf(participant)) {
+        this.alertService.clear();
+        this.participants.push(participant);
+        this.participantInput = '';
+      }else{
+        this.alertService.error("Le nom des participants doivent être différents",false);
+      }
     }
   }
 
   removeParticipant(participant: string) {
-    const index: number = this.participants.indexOf(participant);
-    if (index !== -1) {
-      this.participants.splice(index, 1);
+    if(participant != this.currentParticipant.surnom) {
+      const index: number = this.participants.indexOf(participant);
+      if (index !== -1) {
+        this.participants.splice(index, 1);
+      }
+    }else{
+      this.alertService.error("Vous participez automatiquement à vos événements",false);
     }
   }
 
@@ -72,32 +86,26 @@ export class EventFormComponent implements OnInit {
     event.description = this.addEventForm.get('description').value;
     event.participants = [];
 
+    event.participants.push(this.currentParticipant);
+
     //On recupere le participant qui crée l'événement
-    this.participantService.getParticipantByUserId(Number(this.userId))
-      .subscribe(value => {
+    for (let nom of this.participants){
+      if(nom != this.currentParticipant.surnom){
+        let participant = new Participant();
+        participant.surnom = nom;
+        event.participants.push(participant);
+      }
+    }
 
-        event.participants.push(value);
-
-        for (let nom of this.participants){
-          let participant = new Participant();
-          participant.surnom = nom;
-          event.participants.push(participant);
-        }
-
-        console.log(event.participants);
-
-        this.eventService.addOneEvent(event)
-          .subscribe(
-            data => {
-              this.alertService.success('Evenement ajouté', true);
-              this.router.navigate(['/users/home/']);
-            },
-            error => {
-              this.alertService.error(error);
-            });
-      },error1 => {
-        this.alertService.error("Impossible de créer l'événement");
-      });
+    this.eventService.addOneEvent(event)
+      .subscribe(
+        data => {
+          this.alertService.success('Evenement ajouté', true);
+          this.router.navigate(['/users/home/']);
+        },
+        error => {
+          this.alertService.error(error);
+        });
   }
 
   public errorHandling = (control: string, error: string) => {
