@@ -32,12 +32,12 @@ export class EntriesListComponent implements OnInit {
       .subscribe(
         data => {
           this.loadAllEntriesForUser();
-          this.alertService.success('Dépense supprimé', true);
-          this.router.navigate(['/users/home']);
+          this.alertService.success('Dépense supprimée', true);
+          this.router.navigate(['/users/events/' + this.idEvent + '/entries']);
         },
         error => {
           this.alertService.error(error);
-          this.router.navigate(['/users/home']);
+          this.router.navigate(['/users/events/' + this.idEvent + '/entries']);
         });
   }
 
@@ -47,7 +47,7 @@ export class EntriesListComponent implements OnInit {
       .subscribe(entries => {
         this.entries = entries;
       },error => {
-
+        this.router.navigate(['/users/events/'+ this.idEvent]);
       });
   }
 
