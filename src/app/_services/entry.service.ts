@@ -19,7 +19,7 @@ export class EntryService {
   delete(idEvent:number, idEntry: number) {
     return this.http.delete(`${environment.apiUrl}/api/events/${idEvent}/entries/${idEntry}`);
   }
-  addOneEntry(idEvent:number, event:Entry){
-    return this.http.post(`${environment.apiUrl}/api/events/${idEvent}/entries/`,event);
+  addOneEntry(idEvent:number, entry:Entry){
+    return this.http.post(`${environment.apiUrl}/api/entries`,entry);
   }
 }
