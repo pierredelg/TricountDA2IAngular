@@ -37,7 +37,6 @@ import { EntryFormComponent } from './entry-form/entry-form.component';
 import { SingleEntryComponent } from "./single-entry/single-entry.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { BalanceBarChartComponent } from './balance-bar-chart/balance-bar-chart.component';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 
@@ -76,8 +75,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
     EntriesListComponent,
     BalanceComponent,
     EntryFormComponent,
-    SingleEntryComponent,
-    BalanceBarChartComponent
+    SingleEntryComponent
   ],
     providers: [
       MatDatepickerModule,
