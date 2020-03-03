@@ -39,8 +39,6 @@ export class UserService {
            //On ajoute l'id de l'utilisateur au local storage
            localStorage.setItem('userId', String(idUtilisateur));
 
-           console.log('id utilisateur = ' + idUtilisateur);
-
            //On affiche la page home de l'utilisateur
            this.router.navigate(['users/'+ idUtilisateur +'/home']);
          });

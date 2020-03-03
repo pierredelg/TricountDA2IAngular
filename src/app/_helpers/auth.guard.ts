@@ -14,7 +14,6 @@ export class AuthGuard implements CanActivate {
       //On vérifie si l'utilisateur s'est deja authentifé
         const currentUser = this.authenticationService.currentUserValue;
         if (currentUser) {
-          console.log("Utilisateur authentifié");
             return true;
         }
         //S'il ne l'est pas on le redirige vers la page de login

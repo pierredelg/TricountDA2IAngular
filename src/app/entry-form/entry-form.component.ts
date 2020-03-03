@@ -81,7 +81,6 @@ export class EntryFormComponent implements OnInit {
     //On vérifie qu'au moins une checkBox est checkée
     let listPayePour:Participant[] = [];
     for(let p of this.participants){
-      console.log(p.surnom + " = " +this.entryForm.get(p.surnom).value);
       if(this.entryForm.get(p.surnom) != null && this.entryForm.get(p.surnom).value){
           listPayePour.push(p);
       }
