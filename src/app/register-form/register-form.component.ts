@@ -7,8 +7,6 @@ import {UserService} from "../_services/user.service";
 import {AlertService} from "../_services/alert.service";
 import {AdvancedValidators} from "ng-validator";
 import {ParticipantService} from "../_services/participant.service";
-import {Participant} from "../_models/participant";
-
 
 
 @Component({ templateUrl: 'register-form.component.html' })
